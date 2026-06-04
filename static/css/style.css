@@ -253,6 +253,9 @@ body {
   gap: 14px;
 }
 
+.category-column.single {
+  grid-column: 1 / -1;}
+
 .category-header {
   background: linear-gradient(135deg, var(--green-800) 0%, var(--green-600) 100%);
   color: white;
