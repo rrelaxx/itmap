@@ -160,7 +160,7 @@
       grid.appendChild(empty);
       resultsCount.textContent = '';
     } else {
-      const total = q ? `Найдено: ${totalVisible} из ${totalAll}` : `${totalAll} продуктов`;
+      const total = q ? `Найдено: ${totalVisible} из ${totalAll}` : `Найдено: ${totalAll} продуктов`;
       resultsCount.textContent = total;
     }
   }
