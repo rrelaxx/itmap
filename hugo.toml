@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "/itmap"
 languageCode = "ru-RU"
 title = "Карта программного обеспечения Свердловской области"
 theme = ""
