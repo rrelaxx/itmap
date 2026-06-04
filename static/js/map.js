@@ -238,6 +238,6 @@
   const total = data.reduce((s, c) =>
     s + c.subcategories.reduce((ss, sc) => ss + sc.items.length, 0), 0
   );
-  if (totalCount) totalCount.textContent = `${total} продуктов`;
+  if (totalCount) totalCount.textContent = `В базе: ${total} продуктов`;
 
 })();
