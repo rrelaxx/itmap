@@ -1,7 +1,6 @@
 ---
 title: "Карта программного обеспечения"
 description: "Интерактивная карта производителей ПО"
-type: "staticpage"
-draft: false
+type: "page"
 ---
 123
