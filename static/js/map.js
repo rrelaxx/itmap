@@ -82,10 +82,12 @@
     data.forEach((cat, catIdx) => {
       // Filter by active category tab
       if (activeCategory !== 'all' && String(catIdx) !== activeCategory) return;
+      
 
       const color = CAT_COLORS[catIdx % CAT_COLORS.length];
       const col = document.createElement('div');
       col.className = 'category-column';
+      if (activeCategory !== 'all') col.classList.add('single');
       col.dataset.cat = String(catIdx);
 
       // Category header
