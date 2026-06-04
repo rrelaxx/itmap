@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -5,82 +6,143 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>{{ .Site.Title }}</title>
   <meta name="description" content="{{ .Site.Params.description }}" />
-  <link rel="stylesheet" href="./css/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-950: #052e16;
+      --green-900: #14532d;
+      --green-800: #166534;
+      --green-700: #15803d;
+      --green-600: #16a34a;
+      --green-500: #22c55e;
+      --green-400: #4ade80;
+      --green-300: #86efac;
+      --green-200: #bbf7d0;
+      --green-100: #dcfce7;
+      --green-50:  #f0fdf4;
+      --font: 'Inter', -apple-system, sans-serif;
+    }
+
+    html, body {
+      height: 100%;
+      font-family: var(--font);
+    }
+
+    body {
+      background: linear-gradient(135deg, var(--green-950) 0%, var(--green-800) 50%, var(--green-600) 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Subtle background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(34,197,94,.12) 0%, transparent 50%),
+        radial-gradient(circle at 80% 70%, rgba(74,222,128,.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .card {
+      position: relative;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(134,239,172,.2);
+      backdrop-filter: blur(20px);
+      border-radius: 24px;
+      padding: 56px 64px;
+      text-align: center;
+      max-width: 480px;
+      width: 90%;
+      box-shadow: 0 32px 80px rgba(5,46,22,.5), 0 8px 24px rgba(5,46,22,.3);
+      animation: fadeUp .5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 28px;
+    }
+
+    .card-title {
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.25;
+      letter-spacing: -0.03em;
+      margin-bottom: 10px;
+    }
+
+    .card-subtitle {
+      font-size: 0.9rem;
+      color: var(--green-300);
+      font-weight: 400;
+      line-height: 1.5;
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--green-500);
+      color: var(--green-950);
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: var(--font);
+      text-decoration: none;
+      border-radius: 14px;
+      letter-spacing: -0.01em;
+      box-shadow: 0 4px 20px rgba(34,197,94,.4), 0 1px 4px rgba(34,197,94,.2);
+      transition: background .2s, transform .18s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      background: var(--green-400);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(34,197,94,.5), 0 2px 8px rgba(34,197,94,.3);
+    }
+
+    .btn:active {
+      transform: translateY(0);
+    }
+
+    .btn svg {
+      flex-shrink: 0;
+    }
+  </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="header-inner">
-    <div class="header-logo">
-      <svg width="36" height="36" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <div class="card">
+    <div class="logo">
+      <svg width="52" height="52" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="36" height="36" rx="8" fill="#1a7a3c"/>
         <path d="M8 10h6v16H8zM15 18h6v8h-6zM22 13h6v13h-6z" fill="white" opacity="0.9"/>
       </svg>
-      <div class="header-title-group">
-        <span class="header-title">Карта производителей</span>
-        <span class="header-subtitle">Свердловская область</span>
-      </div>
     </div>
-    <div class="header-meta">
-      <span class="total-badge" id="total-count">821 продукт</span>
-      <span class="header-desc">Карта программного обеспечения производителей региона</span>
-    </div>
-  </div>
-</header>
-
-<div class="toolbar">
-  <div class="toolbar-inner">
-    <div class="search-wrap">
-      <svg class="search-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
-        <circle cx="6.5" cy="6.5" r="5" stroke="#6b7280" stroke-width="1.5"/>
-        <path d="M10.5 10.5L14 14" stroke="#6b7280" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
-      <input type="text" id="search-input" placeholder="Поиск по названию ПО..." class="search-input" />
-      <button class="search-clear" id="search-clear" title="Очистить">✕</button>
-    </div>
-    <div class="category-tabs" id="category-tabs">
-      <button class="tab-btn active" data-cat="all">Все</button>
-  </div>
-    <div class="results-count" id="results-count"></div>
-  </div>
-</div>
-
-<main class="map-container" id="map-container">
-  <div class="map-grid" id="map-grid">
-    <!-- populated by JS -->
-  </div>
-</main>
-
-<div class="modal-overlay" id="modal-overlay">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modal-close">✕</button>
-    <div class="modal-header">
-      <div class="modal-category-badge" id="modal-cat"></div>
-      <div class="modal-subcategory" id="modal-subcat"></div>
-    </div>
-    <h2 class="modal-title" id="modal-title"></h2>
-    <div class="modal-owner" id="modal-owner"></div>
-    <div class="modal-inn" id="modal-inn"></div>
-    <a class="modal-link" id="modal-link" href="#" target="_blank" rel="noopener noreferrer">
-      Открыть в реестре Минцифры
-      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style="margin-left:6px">
-        <path d="M2 7h10M7 2l5 5-5 5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <h1 class="card-title">Карта программного обеспечения</h1>
+    <p class="card-subtitle">Производители ПО Свердловской области</p>
+    <a href="/ural/" class="btn">
+      Открыть карту
+      <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+        <path d="M3 9h12M9 3l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
       </svg>
     </a>
   </div>
-</div>
-
-<footer class="site-footer">
-  <div class="footer-inner">
-    <span>Карта программного обеспечения компаний-производителей Свердловской области</span>
-    <span class="footer-source">Источник: Реестр российского ПО Минцифры РФ</span>
-  </div>
-</footer>
-
-<script src="./js/data.js"></script>
-<script src="./js/map.js"></script>
 </body>
 </html>
